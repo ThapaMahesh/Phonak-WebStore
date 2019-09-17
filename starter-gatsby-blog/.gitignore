@@ -57,9 +57,6 @@ typings/
 # dotenv environment variables file
 .env
 
-# build folder
-public
-
 # gatsby cache folder
 .cache
 

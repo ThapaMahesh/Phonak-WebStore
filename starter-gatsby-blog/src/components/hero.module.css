@@ -1,6 +1,6 @@
 .hero {
   position: relative;
-  background: #000;
+  background: #fff;
   color: #fff;
   text-align: center;
 }
@@ -33,6 +33,7 @@
 @media(min-width: 1000px) {
   .heroDetails {
     font-size: 20px;
+    left: 15vh;
   }
 }
 

@@ -5,6 +5,8 @@ import Img from 'gatsby-image'
 
 import heroStyles from '../components/hero.module.css'
 
+import ProductPreview from '../components/product-preview'
+
 class CategoryTemplate extends React.Component {
   render() {
     const post = get(this.props, 'data.contentfulCategory')
@@ -13,7 +15,9 @@ class CategoryTemplate extends React.Component {
     return (
       <div style={{ background: '#fff' }}>
         <Helmet title={`${post.title} | ${siteTitle}`} />
-        
+        {post.productsList.map(trick => (
+              <ProductPreview product={trick} />
+              ))}
       </div>
     )
   }
@@ -25,6 +29,12 @@ export const pageQuery = graphql`
   query CategoryBySlug($slug: String!) {
     contentfulCategory(slug: { eq: $slug }) {
       title
+      productsList {
+        __typename
+        ... on ContentfulProductsList {
+          name
+        }
+      }
     }
   }
 `

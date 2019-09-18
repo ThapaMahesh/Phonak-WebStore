@@ -76,5 +76,42 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
     )
   });
 
-  return Promise.all([blogPosts, categoryPosts]);
+
+  const productPosts = new Promise((resolve, reject) => {
+    const product = path.resolve('./src/templates/product.js')
+    resolve(
+      graphql(
+        `
+          {
+            allContentfulProductsList {
+              edges {
+                node {
+                  name
+                  slug
+                }
+              }
+            }
+          }
+          `
+      ).then(result => {
+        if (result.errors) {
+          console.log(result.errors)
+          reject(result.errors)
+        }
+
+        const posts = result.data.allContentfulProductsList.edges
+        posts.forEach((post, index) => {
+          createPage({
+            path: `/${post.node.slug}/`,
+            component: product,
+            context: {
+              slug: post.node.slug
+            },
+          })
+        })
+      })
+    )
+  });
+
+  return Promise.all([blogPosts, categoryPosts, productPosts]);
 }

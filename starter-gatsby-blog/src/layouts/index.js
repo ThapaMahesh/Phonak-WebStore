@@ -3,10 +3,13 @@ import Link from 'gatsby-link'
 import base from './base.css'
 import Container from '../components/container'
 import Navigation from '../components/navigation'
+import get from 'lodash/get'
 
 class Template extends React.Component {
   render() {
     const { location, children } = this.props
+    const navs = get(this, 'props.data.allContentfulCategory.edges')
+
     let header
 
     let rootPath = `/`
@@ -16,7 +19,7 @@ class Template extends React.Component {
 
     return (
       <Container>
-        <Navigation />
+        <Navigation category = {navs} />
         {children()}
       </Container>
     )
@@ -24,3 +27,17 @@ class Template extends React.Component {
 }
 
 export default Template
+
+
+export const pageQuery = graphql`
+  query NavigationQuery {
+    allContentfulCategory {
+      edges {
+        node {
+          title
+          slug
+        }
+      }
+    }
+  }
+`

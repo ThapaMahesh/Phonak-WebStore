@@ -8,14 +8,19 @@ import styles from './navigation.module.css'
 import CategoryNav from './category-nav'
 
 
-export default ({data}) => {
+export default ({category}) => {
+
   return (
       <nav role="navigation">
         <ul className={styles.navigation}>
           <li className={styles.navigationItem}>
             <Link to="/">Home</Link>
           </li>
-          
+          {category.map(({ node }) => {
+              return (
+                  <CategoryNav key={node.slug} category={node} />
+              )
+            })}
           <li className={styles.navigationItem}>
             <Link to="/blog/">Blog</Link>
           </li>
@@ -24,16 +29,3 @@ export default ({data}) => {
   )
 }
 
-
-export const pageQuery = graphql`
-  query NavigationQuery {
-    allContentfulCategory {
-      edges {
-        node {
-          title
-          slug
-        }
-      }
-    }
-  }
-`

@@ -17,7 +17,7 @@ class CategoryTemplate extends React.Component {
         </div>
         <div className={styles.productDiv}>
             {post.productsList.map(trick => (
-                  <ProductPreview product={trick} />
+                  <ProductPreview key={trick.slug} product={trick} />
                   ))}
         </div>
       </div>

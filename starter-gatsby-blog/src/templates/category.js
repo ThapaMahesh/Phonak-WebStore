@@ -1,11 +1,8 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import get from 'lodash/get'
-import Img from 'gatsby-image'
-
-import heroStyles from '../components/hero.module.css'
-
 import ProductPreview from '../components/product-preview'
+import styles from '../components/article-preview.module.css'
 
 class CategoryTemplate extends React.Component {
   render() {
@@ -15,9 +12,14 @@ class CategoryTemplate extends React.Component {
     return (
       <div style={{ background: '#fff' }}>
         <Helmet title={`${post.title} | ${siteTitle}`} />
-        {post.productsList.map(trick => (
-              <ProductPreview product={trick} />
-              ))}
+        <div className={styles.hero}>
+          {post.title}
+        </div>
+        <div className={styles.productDiv}>
+            {post.productsList.map(trick => (
+                  <ProductPreview product={trick} />
+                  ))}
+        </div>
       </div>
     )
   }
@@ -33,6 +35,9 @@ export const pageQuery = graphql`
         __typename
         ... on ContentfulProductsList {
           name
+          slug
+          price
+          picture
         }
       }
     }

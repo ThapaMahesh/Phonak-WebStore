@@ -69,7 +69,13 @@ class ProductTemplate extends React.Component {
                       ))}
             <div className={styles.checkoutDiv}>
               <button type="button" className={styles.button}>Add to Cart</button> 
-              <p>{product.price}Kr</p> 
+              <p>{product.price} Kr</p> 
+              <input className={styles.quantity}
+                id="add-to-bag-quantity"
+                type="number"
+                value="1"
+                class="clayer-add-to-bag-quantity"
+              />
             </div>
           </div>
         </div>

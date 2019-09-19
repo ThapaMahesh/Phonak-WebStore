@@ -110,3 +110,9 @@
   display: table-cell;
   width: 40vh;
 }
+
+.quantity{
+  width: 30px;
+  margin-top: 1.5vh;
+  margin-left: 5vh;
+}

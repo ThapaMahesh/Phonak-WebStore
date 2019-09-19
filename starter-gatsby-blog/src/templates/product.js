@@ -2,6 +2,7 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import get from 'lodash/get'
 import Img from 'gatsby-image'
+import * as CLayer from 'commercelayer-react'
 
 import heroStyles from '../components/hero.module.css'
 import styles from '../components/article-preview.module.css'
@@ -23,17 +24,36 @@ class ProductTemplate extends React.Component {
     return variantArray
   }
 
+  distinct(value, index, self){
+    return self.indexOf(value) === index
+  }
+
   render() {
     const product = get(this.props, 'data.contentfulProductsList')
     const siteTitle = get(this.props, 'data.site.siteMetadata.title')
 
-    let types = new Set(product.variant.map(eachVariant => eachVariant.type != null ? eachVariant.type.name : ""))
+    let types = product.variant.map(eachVariant => eachVariant.type != null ? eachVariant.type.name : "").filter(this.distinct)
 
-    let sizes = new Set(product.variant.map(eachVariant => eachVariant.size != null ? eachVariant.size.size : ""))
+    let sizes = product.variant.map(eachVariant => eachVariant.size != null ? eachVariant.size.size : "").filter(this.distinct)
 
-    let color = new Set(product.variant.map(eachVariant => eachVariant.productColour != null ? eachVariant.productColour.colour : ""))
+    let color = product.variant.map(eachVariant => eachVariant.productColour != null ? eachVariant.productColour.colour : "").filter(this.distinct)
 
     let variants = this.getVariant(product)
+
+    console.log(color)
+    window.onload = function(){
+      if(sizes.length === 1 && sizes[0] === ""){
+        document.getElementById("select-size").style.display = "none"
+      }
+
+      if(types.length === 1 && types[0] === ""){
+        document.getElementById("select-type").style.display = "none"
+      }
+
+      if(color.length === 1 && color[0] === ""){
+        document.getElementById("select-color").style.display = "none"
+      }
+    }
 
     return (
       <div style={{ background: '#fff' }}>
@@ -46,40 +66,35 @@ class ProductTemplate extends React.Component {
           <div className={styles.span4}>
               <div className={styles.sProdContainer}>
                 <h3>{product.name}</h3>
+                <CLayer.Price skuCode="Hook HE 7"/>
               </div>
-                  <div className={styles.variationDiv}>
+                  <div id="select-color" className={styles.variationDiv}>
                         <p>Velg farge:</p>
                         <select>
-                                  <option value="">Hvit</option>
-                                  <option value="Orange">Oransje</option>
-                                  <option value="Blue">Blå</option>
-                                  <option value="Green">Grønn</option>
-                                  <option value="Pink">Rosa</option>
-                                  <option value="Purple">Lilla</option>
-                                  <option value="Yellow">Gul</option>
+                            { color.map(function(eachColor, index){ 
+                                return <option key={index}>{eachColor}</option>
+                              })
+                            }
                         </select>
                   </div>
-                  <div className={styles.variationDiv}>
+                  <div id="select-type" className={styles.variationDiv}>
                       <p>Velg type:</p>
                       <select>
-                                <option value="HE 7">HE 7</option>
-                                <option value="HE 7 680">HE 7 680</option>
+                          { types.map(function(eachType, index){ 
+                                return <option key={index}>{eachType}</option>
+                              })
+                            }
                       </select>
                   </div>
-                  <div className={styles.variationDiv}>
+                  <div id="select-size" className={styles.variationDiv}>
                       <p>Velg størrelse:</p>
                       <select>
-                                <option value="Small">Small</option>
-                                <option value="Medium">Medium</option>
-                                <option value="Large">Large</option>
+                          { sizes.map(function(eachSize, index){ 
+                                return <option key={index}>{eachSize}</option>
+                              })
+                            }
                       </select>
                   </div>
-                {product.variant.map(trick => (
-                      <div>
-                        {/*  <p key={trick.slug}>{trick.code}</p>
-                          {trick.type.name} */}
-                      </div>
-                      ))}
             <div className={styles.checkoutDiv}>
               <button type="button" className={styles.button}>Add to Cart</button> 
               <p>{product.price} Kr</p> 
@@ -87,7 +102,6 @@ class ProductTemplate extends React.Component {
                 id="add-to-bag-quantity"
                 type="number"
                 value="1"
-                class="clayer-add-to-bag-quantity"
               />
             </div>
           </div>

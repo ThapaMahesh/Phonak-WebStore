@@ -116,3 +116,7 @@
   margin-top: 1.5vh;
   margin-left: 5vh;
 }
+
+.hidden {
+  display: hidden;
+}

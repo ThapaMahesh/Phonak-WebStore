@@ -18,3 +18,9 @@
 .navigationItem a {
   color: currentColor;
 }
+
+.checkoutLogo{
+  height: 5vh;
+  width: 5vh;
+  margin-right: 4%;
+}

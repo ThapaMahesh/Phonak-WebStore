@@ -20,6 +20,7 @@ npm run setup -- --spaceId 7kpleg98c8uc --deliveryToken uiRZgreZ5vd7ikrWbrYHBoiA
             data-dev-settings-console="true"
             data-dev-settings-trace="true"
         ></div>
+        
         <script
             type="text/javascript"
             src="https://cdn.jsdelivr.net/npm/commercelayer@1.9.13/dist/commercelayer.min.js"

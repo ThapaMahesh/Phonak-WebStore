@@ -59,6 +59,11 @@
   width: 40%;
 }
 
+.span4 p{
+  float: right;
+  margin-right: 10%;
+}
+
 .button {
   border-radius: 5px;
   padding: 15px;
@@ -68,4 +73,46 @@
   font-size: 15px;
   color: #e5e0e0;
   cursor: pointer;
+  float: right;
+  margin-right: 20%;
+}
+
+.sProdContainer{
+  position: relative;
+  display: table-cell;
+  width: 100%;
+}
+
+.sProdContainer h3{
+  float: left;
+}
+
+.sProdContainer p{
+  margin-left: 10vh;
+}
+
+.variationDiv{
+  display: table-cell;
+  float: left;
+  width: 15vh;
+}
+
+.variationDiv p {
+  float: left;
+}
+.variationDiv select{
+  float: left;
+}
+
+.checkoutDiv{
+  float: right;
+  margin-top: 10%;
+  display: table-cell;
+  width: 40vh;
+}
+
+.quantity{
+  width: 30px;
+  margin-top: 1.5vh;
+  margin-left: 5vh;
 }

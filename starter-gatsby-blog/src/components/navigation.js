@@ -22,7 +22,8 @@ export default ({category}) => {
               )
             })}
           <li className={styles.navigationItem}>
-            <Link to="/blog/">Handlekurv</Link>
+          <img className={styles.checkoutLogo} alt="" src="https://icons-for-free.com/iconfiles/png/512/buy+cart+checkout+ecommerce+retail+shopping+icon-1320086032792426891.png" />
+            <Link to="/blog/">kr_00.00</Link> 
           </li>
         </ul>
       </nav>

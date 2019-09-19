@@ -40,19 +40,56 @@ class ProductTemplate extends React.Component {
         <Helmet title={`${product.name} | ${siteTitle}`} />
 
         <div className={styles.flexdiv}>
-          <div className={styles.span6}>
-            <img src={product.picture} />
-          </div>
+            <div className={styles.span6}>
+              <img src={product.picture} />
+            </div>
           <div className={styles.span4}>
-            <h3>{product.name}</h3>
-            <p>{product.price}Kr</p>
-            {product.variant.map(trick => (
-                  <div>
-                    <p key={trick.slug}>{trick.code}</p>
-                      {trick.type.name}
+              <div className={styles.sProdContainer}>
+                <h3>{product.name}</h3>
+              </div>
+                  <div className={styles.variationDiv}>
+                        <p>Velg farge:</p>
+                        <select>
+                                  <option value="">Hvit</option>
+                                  <option value="Orange">Oransje</option>
+                                  <option value="Blue">Blå</option>
+                                  <option value="Green">Grønn</option>
+                                  <option value="Pink">Rosa</option>
+                                  <option value="Purple">Lilla</option>
+                                  <option value="Yellow">Gul</option>
+                        </select>
                   </div>
-                  ))}
-            <button type="button" className={styles.button}>Add to Cart</button>  
+                  <div className={styles.variationDiv}>
+                      <p>Velg type:</p>
+                      <select>
+                                <option value="HE 7">HE 7</option>
+                                <option value="HE 7 680">HE 7 680</option>
+                      </select>
+                  </div>
+                  <div className={styles.variationDiv}>
+                      <p>Velg størrelse:</p>
+                      <select>
+                                <option value="Small">Small</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Large">Large</option>
+                      </select>
+                  </div>
+                {product.variant.map(trick => (
+                      <div>
+                        {/*  <p key={trick.slug}>{trick.code}</p>
+                          {trick.type.name} */}
+                      </div>
+                      ))}
+            <div className={styles.checkoutDiv}>
+              <button type="button" className={styles.button}>Add to Cart</button> 
+              <p>{product.price} Kr</p> 
+              <input className={styles.quantity}
+                id="add-to-bag-quantity"
+                type="number"
+                value="1"
+                class="clayer-add-to-bag-quantity"
+              />
+            </div>
           </div>
         </div>
       </div>

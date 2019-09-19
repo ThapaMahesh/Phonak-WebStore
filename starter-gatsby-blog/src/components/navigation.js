@@ -14,7 +14,7 @@ export default ({category}) => {
       <nav role="navigation">
         <ul className={styles.navigation}>
           <li className={styles.navigationItem}>
-            <Link to="/">Home</Link>
+            <Link to="/">Hjem</Link>
           </li>
           {category.map(({ node }) => {
               return (
@@ -22,7 +22,7 @@ export default ({category}) => {
               )
             })}
           <li className={styles.navigationItem}>
-            <Link to="/blog/">Blog</Link>
+            <Link to="/blog/">Handlekurv</Link>
           </li>
         </ul>
       </nav>

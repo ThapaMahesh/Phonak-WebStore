@@ -1,0 +1,31 @@
+.mainDiv{
+    top: 0;
+    background: #fff;
+    display: table-cell;
+    text-align: center;
+
+}
+
+.summaryDiv{
+    background: #fff;
+    display: table-cell;
+}
+
+.summaryUl{
+    float: left;
+    margin-left: 10%;
+    font-size: 2em;
+}
+
+.btn {
+    border-radius: 5px;
+    padding: 15px;
+    background-color: green;
+    border: 0;
+    font-family: sans-serif;
+    font-size: 15px;
+    color: #e5e0e0;
+    cursor: pointer;
+    float: right;
+    margin-right: 4vh;
+  }

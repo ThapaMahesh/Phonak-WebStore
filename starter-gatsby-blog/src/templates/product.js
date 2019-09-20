@@ -6,8 +6,15 @@ import * as CLayer from 'commercelayer-react'
 
 import heroStyles from '../components/hero.module.css'
 import styles from '../components/article-preview.module.css'
+import { Link } from 'react-router-dom'
+import {basket} from '../pages/basket'
 
 class ProductTemplate extends React.Component {
+
+  constructor(){
+    super()
+    this.setState(basket)
+  }
 
   getVariant(product){
     let variantArray = []
@@ -40,7 +47,7 @@ class ProductTemplate extends React.Component {
 
     let variants = this.getVariant(product)
 
-    console.log(color)
+    
     window.onload = function(){
       if(sizes.length === 1 && sizes[0] === ""){
         document.getElementById("select-size").style.display = "none"
@@ -66,7 +73,6 @@ class ProductTemplate extends React.Component {
           <div className={styles.span4}>
               <div className={styles.sProdContainer}>
                 <h3>{product.name}</h3>
-                <CLayer.Price skuCode="Hook HE 7"/>
               </div>
                   <div id="select-color" className={styles.variationDiv}>
                         <p>Velg farge:</p>
@@ -96,13 +102,27 @@ class ProductTemplate extends React.Component {
                       </select>
                   </div>
             <div className={styles.checkoutDiv}>
-              <button type="button" className={styles.button}>Add to Cart</button> 
-              <p>{product.price} Kr</p> 
-              <input className={styles.quantity}
+
+            <button onClick={function() {
+
+                  basket.push({product})
+                  console.log("BASKET: ", basket)
+
+            }} className={styles.button}>Add to Cart</button> 
+
+              <p><CLayer.Price skuCode="Hook HE 7"/></p> 
+              <p>Antall:<input className={styles.quantity}
                 id="add-to-bag-quantity"
                 type="number"
                 value="1"
-              />
+                /></p>
+                <br/>
+                <br/>
+                <hr/>
+                  <p style={{float: 'right', marginRight: '10%'}}><Link to="/checkout/"><CLayer.Checkout/></Link></p>
+                <br/>
+                <br/>
+                <hr/>
             </div>
           </div>
         </div>

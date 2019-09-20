@@ -6,11 +6,12 @@ import * as CLayer from 'commercelayer-react'
 
 import heroStyles from '../components/hero.module.css'
 import styles from '../components/article-preview.module.css'
+import { Link } from 'react-router-dom'
+import {basket} from '../pages/basket'
 
 import VariantTypes from '../components/variant-types'
 
 class ProductTemplate extends React.Component {
-
   
   constructor(props){
     super(props)
@@ -69,6 +70,7 @@ class ProductTemplate extends React.Component {
         }
       }
     }
+
     console.log(result)
     return result
   }
@@ -99,8 +101,6 @@ class ProductTemplate extends React.Component {
           <div className={styles.span4}>
               <div className={styles.sProdContainer}>
                 <h3>{this.product.name}</h3>
-                <CLayer.Price skuCode={this.state.code}/>
-                <CLayer.AvailabilityMessageContainer id={`availability-message-${this.state.code}`} />
               </div>
               
               <VariantTypes variant={this.color} title={'Velg Farge:'} type={'color'} onSelectChange={this.onSelectChange}/>
@@ -108,13 +108,30 @@ class ProductTemplate extends React.Component {
               <VariantTypes variant={this.sizes} title={'Velg størelse: '} type={'size'} onSelectChange={this.onSelectChange}/>
               
             <div className={styles.checkoutDiv}>
-              <button type="button" className={styles.button}>Add to Cart</button> 
-              <p>{this.product.price} Kr</p> 
-              <input className={styles.quantity}
+              <div>
+                <button onClick={() => {
+                      basket.push(this.product)
+                      console.log("BASKET: ", basket)
+
+                }} className={styles.button}>Add to Cart</button> 
+
+                <p><CLayer.Price skuCode="Hook HE 7"/></p> 
+              </div>
+
+              <p>
+                Antall:<input className={styles.quantity}
                 id="add-to-bag-quantity"
                 type="number"
-                defaultValue="1"
-              />
+                defaultValue="1" />
+              </p>
+              <br/>
+              <br/>
+              <hr/>
+                <p style={{float: 'right', marginRight: '10%'}}><Link to="/checkout/"><CLayer.Checkout/></Link></p>
+              <br/>
+              <br/>
+              <hr/>
+
             </div>
           </div>
         </div>

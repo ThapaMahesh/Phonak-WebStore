@@ -74,7 +74,7 @@
   color: #e5e0e0;
   cursor: pointer;
   float: right;
-  margin-right: 20%;
+  margin-right: 4vh;
 }
 
 .sProdContainer{
@@ -93,30 +93,33 @@
 
 .variationDiv{
   display: table-cell;
+  position: relative;
   float: left;
   width: 15vh;
+  margin-right: 3vh;
 }
 
 .variationDiv p {
+  position: relative;
   float: left;
 }
 .variationDiv select{
   float: left;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .checkoutDiv{
   float: right;
-  margin-top: 10%;
+  margin-top: 20%;
   display: table-cell;
   width: 40vh;
 }
 
 .quantity{
+  position: relative;
+  float: right;
   width: 30px;
-  margin-top: 1.5vh;
-  margin-left: 5vh;
-}
-
-.hidden {
-  display: hidden;
+  margin-left: 3vh;
 }

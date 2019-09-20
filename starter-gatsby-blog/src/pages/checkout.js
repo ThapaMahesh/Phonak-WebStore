@@ -38,8 +38,8 @@ class Checkout extends React.Component{
                     <ul style={{marginLeft: '6%'}}>
 
                         {basket.map((eachItem, index) =>{ 
-                                increment(Number(eachItem.product.price));                           
-                                return <li key={index} style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'left', marginTop: '3%'}}><img style={{width: '10vh', height: '10vh'}} src={eachItem.product.picture} /> <p>{eachItem.product.name}</p><p>, kr {eachItem.product.price}</p></li>
+                                increment(Number(eachItem.price));                           
+                                return <li key={index} style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'left', marginTop: '3%'}}><img style={{width: '10vh', height: '10vh'}} src={eachItem.picture} /> <p>{eachItem.name}</p><p>, kr {eachItem.price}</p></li>
                               })
                         }
                     </ul>

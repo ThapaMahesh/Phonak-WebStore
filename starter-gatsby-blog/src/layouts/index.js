@@ -26,7 +26,7 @@ class Template extends React.Component {
             baseUrl="https://phonakbutikk.commercelayer.io"
             clientId="1348723fa5de41b9dc1c1525a4bd3bb859312c3cc59a7734bd15400041b161c5"
             marketId="1333"
-            countryCode="US"
+            countryCode="NO"
             languageCode="en"
             cartUrl="https://example.com/cart"
             returnUrl="https://example.com/return"

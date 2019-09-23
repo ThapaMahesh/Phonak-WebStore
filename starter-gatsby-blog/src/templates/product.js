@@ -118,6 +118,22 @@ class ProductTemplate extends React.Component {
                 <p><CLayer.Price skuCode="Hook HE 7"/></p> 
               </div>
 
+              <CLayer.AddToBag skuCode="Hook HE 7"
+                           skuName="Hook HE 7" />
+
+                           <CLayer.ShoppingBagItems
+            itemTemplate={
+              <div>
+                <CLayer.ShoppingBagItemImage />
+                <CLayer.ShoppingBagItemName />
+                <CLayer.ShoppingBagItemUnitAmount />
+                <CLayer.ShoppingBagItemQtyContainer />
+                <CLayer.ShoppingBagItemRemove />
+                <CLayer.ShoppingBagItemTotalAmount />
+              </div>
+            }
+          />
+
               <p>
                 Antall:<input className={styles.quantity}
                 id="add-to-bag-quantity"

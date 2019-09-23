@@ -105,8 +105,8 @@ class ProductTemplate extends React.Component {
               
             <div className={styles.checkoutDiv}>
               <div style={{position: 'relative'}}>
-                <div style={{ textAlign: 'center'}}>Pris: <CLayer.Price skuCode="Hook HE 7"/></div>
-
+                <div>Pris: <CLayer.Price skuCode="Hook HE 7"/></div>
+                  <br/>
                 <div id="addBtn" style={{width: '100px'}}>[<CLayer.AddToBag skuCode="Hook HE 7"
                                  skuName="Hook HE 7" />]</div>
 

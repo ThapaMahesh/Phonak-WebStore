@@ -1,57 +1,42 @@
 import React from 'react'
 import get from 'lodash/get'
-import Helmet from 'react-helmet'
 import styles from './checkout.css'
 import * as CLayer from 'commercelayer-react'
-import {basket} from './basket'
-import {sum} from './basket'
-import { increment } from './basket'
 
 class Checkout extends React.Component{
 
     constructor(){
-        super() 
-    }
-
-    checkBasket(){
-        if(basket.length === 0){
-            return (            
-            <div>
-                <h4 style={{marginLeft: '8%'}}>Du har ikke lagt til noen produkter enda.</h4>
-            </div>
-            )
-        }
-
+        super()
     }
     
     render(){
         const siteTitle = get(this.props, 'data.site.siteMetadata.title')
-        const checkMethod = this.checkBasket()
         return(
             <div className={styles.mainDiv}>
-                <Helmet title={"Checkout"} />
-                <h1>Checkout</h1>
-                <br/>
-                <div className={styles.summaryDiv}>
-                <h4 style={{marginLeft: '5%'}}>Products:</h4>
-                {checkMethod}
-                    <ul style={{marginLeft: '6%'}}>
 
-                        {basket.map((eachItem, index) =>{ 
-                                increment(Number(eachItem.price));                           
-                                return <li key={index} style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'left', marginTop: '3%'}}><img style={{width: '10vh', height: '10vh'}} src={eachItem.picture} /> <p>{eachItem.name}</p><p>, kr {eachItem.price}</p></li>
-                              })
-                        }
-                    </ul>
-                </div>
-                <hr/>
-                <div style={{height: 'auto', width: '100vh', display: 'table-cell'}}>
-                    <button type="button" style={{ float: 'right', marginRight: '5%', marginTop: '2%',  top: '50%', transform: 'translateY(-50%)'}}>Order now</button>
-                    <p style={{float: 'right', marginRight: '5%', top: '50%', transform: 'translateY(-50%)'}}>SUM: kr <span>{sum}</span></p>
+                <CLayer.ShoppingBagItems
+                    itemTemplate={
+                    <div style={{width: '100vh', height:'auto', display: 'table-cell', background: '#fff'}}>
+                       <div style={{width: '10vh', height: '10vh', float: 'left'}}> <CLayer.ShoppingBagItemImage /> </div>
+                        <div style={{ marginTop: '2vh',  float: 'left', width: '80vh', textAlign: 'center'}}>
+                            <div style={{float:'left', marginLeft: '5vh'}}>Item: <CLayer.ShoppingBagItemName /></div>
+                            <div style={{float:'left', marginLeft: '10vh'}}>Price pr: <CLayer.ShoppingBagItemUnitAmount /></div>
+                            <div style={{float:'left', marginLeft: '10vh'}}>Quantity: <CLayer.ShoppingBagItemQtyContainer /></div>
+                            <div style={{float:'left', marginLeft: '10vh'}}>Quantity price: <CLayer.ShoppingBagItemTotalAmount /></div>
+                            <div style={{float:'left', marginLeft: '10vh', marginTop: '2vh'}}><CLayer.ShoppingBagItemRemove /></div>
+                        </div>
+                    </div>
+                } />
+
+                <div style={{width: '100vh'}}>
+                    <hr/>
+                    <span style={{float: 'right', marginRight: '5vh'}}><CLayer.Checkout/></span>
+                    <span style={{float: 'right', marginRight: '9vh'}}><CLayer.ShoppingBagTotal /></span>
+                    <span style={{float: "right", marginRight: '2vh'}}>Total:</span>
                     <br/>
+                    <hr/>
                 </div>
-                <hr/>
-            </div>
+            </div> 
         )
     }
 }

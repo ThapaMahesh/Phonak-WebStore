@@ -1,14 +1,9 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import get from 'lodash/get'
-import Img from 'gatsby-image'
 import * as CLayer from 'commercelayer-react'
-
-import heroStyles from '../components/hero.module.css'
 import styles from '../components/article-preview.module.css'
 import { Link } from 'react-router-dom'
-import {basket} from '../pages/basket'
-
 import VariantTypes from '../components/variant-types'
 
 class ProductTemplate extends React.Component {
@@ -41,6 +36,7 @@ class ProductTemplate extends React.Component {
     for (var i = 0; i < product.variant.length; i++) {
       variantArray.push({
         code: product.variant[i].code, 
+        price: product.price,
         type: product.variant[i].type != null ? product.variant[i].type.name : null,
         size: product.variant[i].size != null ? product.variant[i].size.size : null,
         color: product.variant[i].productColour != null ? product.variant[i].productColour.colour : null
@@ -64,6 +60,7 @@ class ProductTemplate extends React.Component {
       if(allVariants[i].type === type && allVariants[i].size === size && allVariants[i].color === color){
         result = {
           code: allVariants[i].code,
+          price: allVariants[i].price,
           type: type,
           color: color,
           size: size
@@ -83,7 +80,6 @@ class ProductTemplate extends React.Component {
 
     this.currentVariant = this.getCode(this.variants, this.currentVariant.type, this.currentVariant.size, this.currentVariant.color)
     
-    console.log(this.currentVariant)
     this.setState({code: this.currentVariant.code})
   }
 
@@ -108,46 +104,23 @@ class ProductTemplate extends React.Component {
               <VariantTypes variant={this.sizes} title={'Velg størelse: '} type={'size'} onSelectChange={this.onSelectChange}/>
               
             <div className={styles.checkoutDiv}>
-              <div>
-                <button onClick={() => {
-                      basket.push(this.product)
-                      console.log("BASKET: ", basket)
+              <div style={{position: 'relative'}}>
+                <div style={{ textAlign: 'center'}}>Pris: <CLayer.Price skuCode="Hook HE 7"/></div>
 
-                }} className={styles.button}>Add to Cart</button> 
+                <div id="addBtn" style={{width: '100px'}}>[<CLayer.AddToBag skuCode="Hook HE 7"
+                                 skuName="Hook HE 7" />]</div>
 
-                <p><CLayer.Price skuCode="Hook HE 7"/></p> 
+                <tr></tr>
+                Added in bag: (<CLayer.ShoppingBagItemsCount></CLayer.ShoppingBagItemsCount>)
               </div>
-
-              <CLayer.AddToBag skuCode="Hook HE 7"
-                           skuName="Hook HE 7" />
-
-                           <CLayer.ShoppingBagItems
-            itemTemplate={
-              <div>
-                <CLayer.ShoppingBagItemImage />
-                <CLayer.ShoppingBagItemName />
-                <CLayer.ShoppingBagItemUnitAmount />
-                <CLayer.ShoppingBagItemQtyContainer />
-                <CLayer.ShoppingBagItemRemove />
-                <CLayer.ShoppingBagItemTotalAmount />
+              <br/>
+              <br/>
+              <div style={{position: 'relative',float: 'right', width: '100%'}}>
+                <hr/>
+                  <span style={{float: 'right', marginRight: '2vh'}}><Link to="/checkout/">Proceed to checkout</Link></span>
+                <br/>
+                <hr/>
               </div>
-            }
-          />
-
-              <p>
-                Antall:<input className={styles.quantity}
-                id="add-to-bag-quantity"
-                type="number"
-                defaultValue="1" />
-              </p>
-              <br/>
-              <br/>
-              <hr/>
-                <p style={{float: 'right', marginRight: '10%'}}><Link to="/checkout/"><CLayer.Checkout/></Link></p>
-              <br/>
-              <br/>
-              <hr/>
-
             </div>
           </div>
         </div>

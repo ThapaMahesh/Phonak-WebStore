@@ -25,9 +25,6 @@ class ProductTemplate extends React.Component {
 
     this.currentVariant = this.getCode(this.variants, this.types[0], this.sizes[0], this.color[0])
 
-    this.state = {
-      code: this.currentVariant.code
-    }
   }
 
   getVariant(product){
@@ -35,6 +32,8 @@ class ProductTemplate extends React.Component {
 
     for (var i = 0; i < product.variant.length; i++) {
       variantArray.push({
+        name: product.variant[i].name,
+        label: product.variant[i].name,
         code: product.variant[i].code, 
         price: product.price,
         type: product.variant[i].type != null ? product.variant[i].type.name : null,
@@ -68,7 +67,6 @@ class ProductTemplate extends React.Component {
       }
     }
 
-    console.log(result)
     return result
   }
   
@@ -79,8 +77,6 @@ class ProductTemplate extends React.Component {
     this.currentVariant[type] = value
 
     this.currentVariant = this.getCode(this.variants, this.currentVariant.type, this.currentVariant.size, this.currentVariant.color)
-    
-    this.setState({code: this.currentVariant.code})
   }
 
   render() {
@@ -99,16 +95,21 @@ class ProductTemplate extends React.Component {
                 <h3>{this.product.name}</h3>
               </div>
               
-              <VariantTypes variant={this.color} title={'Velg Farge:'} type={'color'} onSelectChange={this.onSelectChange}/>
+              {/*<VariantTypes variant={this.color} title={'Velg Farge:'} type={'color'} onSelectChange={this.onSelectChange}/>
               <VariantTypes variant={this.types} title={'Velg Types: '} type={'type'} onSelectChange={this.onSelectChange}/>
-              <VariantTypes variant={this.sizes} title={'Velg størelse: '} type={'size'} onSelectChange={this.onSelectChange}/>
+              <VariantTypes variant={this.sizes} title={'Velg størelse: '} type={'size'} onSelectChange={this.onSelectChange}/>*/}
+
+              <CLayer.VariantSelect
+                  PriceContainerId="price"
+                  AvailabilityMessageContainerId="availability-message"
+                  AddToBagId="add-to-bag"
+                  skus={this.variants} />
               
             <div className={styles.checkoutDiv}>
               <div style={{position: 'relative'}}>
-                <div>Pris: <CLayer.Price skuCode="Hook HE 7"/></div>
+                <div>Pris: <CLayer.Price skuCode={this.currentVariant.code}/></div>
                   <br/>
-                <div id="addBtn" style={{width: '100px'}}>[<CLayer.AddToBag skuCode="Hook HE 7"
-                                 skuName="Hook HE 7" />]</div>
+                <div id="addBtn" style={{width: '100px'}}>[<CLayer.AddToBag id="add-to-bag" />]</div>
 
                 <tr></tr>
                 Added in bag: (<CLayer.ShoppingBagItemsCount></CLayer.ShoppingBagItemsCount>)
@@ -141,6 +142,7 @@ export const pageQuery = graphql`
       variant {
         __typename
         ... on ContentfulVariant {
+          name
           code
           image
           size {

@@ -2,7 +2,6 @@ import React from 'react'
 import Link from 'gatsby-link'
 import styles from './navigation.module.css'
 import CategoryNav from './category-nav'
-import { sum } from '../pages/basket'
 import * as CLayer from 'commercelayer-react'
 
 

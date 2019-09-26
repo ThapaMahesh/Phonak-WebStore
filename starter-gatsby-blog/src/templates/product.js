@@ -4,13 +4,13 @@ import get from 'lodash/get'
 import * as CLayer from 'commercelayer-react'
 import styles from '../components/article-preview.module.css'
 import { Link } from 'react-router-dom'
-import VariantTypes from '../components/variant-types'
 
 class ProductTemplate extends React.Component {
   
   constructor(props){
     super(props)
 
+    this.refreshCounter = 0
 
     this.product = get(props, 'data.contentfulProductsList')
     this.siteTitle = get(props, 'data.site.siteMetadata.title')
@@ -24,7 +24,11 @@ class ProductTemplate extends React.Component {
     this.variants = this.getVariant(this.product)
 
     this.currentVariant = this.getCode(this.variants, this.types[0], this.sizes[0], this.color[0])
-
+  
+    if(!window.location.hash){
+      window.location = window.location + '#loaded'
+      window.location.reload()
+    }
   }
 
   getVariant(product){
@@ -33,7 +37,7 @@ class ProductTemplate extends React.Component {
     for (var i = 0; i < product.variant.length; i++) {
       variantArray.push({
         name: product.variant[i].name,
-        label: product.variant[i].code,
+        label: product.variant[i].name,
         code: product.variant[i].code, 
         price: product.price,
         type: product.variant[i].type != null ? product.variant[i].type.name : null,
@@ -41,7 +45,7 @@ class ProductTemplate extends React.Component {
         color: product.variant[i].productColour != null ? product.variant[i].productColour.colour : null
       }) 
     }
-    console.log("ARRAY", product.variant);
+
     return variantArray
   }
 
@@ -80,6 +84,12 @@ class ProductTemplate extends React.Component {
   }
 
   render() {
+      //window.onload = () => {
+        /*if(!window.location.hash){
+           window.location = window.location + '#loaded'
+           window.location.reload()
+        } */
+     // }
 
     return (
       <div style={{ background: '#fff' }}>
@@ -114,7 +124,7 @@ class ProductTemplate extends React.Component {
               <br/>
               <div style={{position: 'relative',float: 'right', width: '100%'}}>
                 <hr/>
-                  <span style={{float: 'right', marginRight: '2vh'}}><Link to="/checkout/">Proceed to checkout</Link></span>
+                  <span style={{float: 'right', marginRight: '2vh'}}><Link to="/checkout/">Proceed to basket</Link></span>
                 <br/>
                 <hr/>
               </div>

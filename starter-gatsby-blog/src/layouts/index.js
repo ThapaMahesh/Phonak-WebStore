@@ -28,8 +28,8 @@ class Template extends React.Component {
             marketId="1333"
             countryCode="NO"
             languageCode="en"
-            cartUrl="https://example.com/cart"
-            returnUrl="https://example.com/return"
+            cartUrl="http://localhost:8000/checkout/"
+            returnUrl="http://localhost:8000"
             privacyUrl="https://example.com/privacy"
             termsUrl="https://example.com/terms" />
       </Container>

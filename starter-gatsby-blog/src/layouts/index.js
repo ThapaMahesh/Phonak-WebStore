@@ -24,7 +24,7 @@ class Template extends React.Component {
         {children()}
         <CLayer.Config
             baseUrl="https://phonakbutikk.commercelayer.io"
-            clientId="1348723fa5de41b9dc1c1525a4bd3bb859312c3cc59a7734bd15400041b161c5"
+            clientId="3e8c6076d17fe300633e3eda52bbe7ec0e2895e73ef85483694060f580bec561"
             marketId="1333"
             countryCode="NO"
             languageCode="en"

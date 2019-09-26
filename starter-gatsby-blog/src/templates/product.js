@@ -33,7 +33,7 @@ class ProductTemplate extends React.Component {
     for (var i = 0; i < product.variant.length; i++) {
       variantArray.push({
         name: product.variant[i].name,
-        label: product.variant[i].name,
+        label: product.variant[i].code,
         code: product.variant[i].code, 
         price: product.price,
         type: product.variant[i].type != null ? product.variant[i].type.name : null,
@@ -41,7 +41,7 @@ class ProductTemplate extends React.Component {
         color: product.variant[i].productColour != null ? product.variant[i].productColour.colour : null
       }) 
     }
-
+    console.log("ARRAY", product.variant);
     return variantArray
   }
 
@@ -58,7 +58,7 @@ class ProductTemplate extends React.Component {
     for (var i = 0; i < allVariants.length; i++) {
       if(allVariants[i].type === type && allVariants[i].size === size && allVariants[i].color === color){
         result = {
-          code: allVariants[i].code,
+          code: allVariants[i].code,  
           price: allVariants[i].price,
           type: type,
           color: color,
@@ -80,7 +80,6 @@ class ProductTemplate extends React.Component {
   }
 
   render() {
-    
 
     return (
       <div style={{ background: '#fff' }}>
@@ -109,10 +108,7 @@ class ProductTemplate extends React.Component {
               <div style={{position: 'relative'}}>
                 <div>Pris: <CLayer.Price skuCode={this.currentVariant.code}/></div>
                   <br/>
-                <div id="addBtn" style={{width: '100px'}}>[<CLayer.AddToBag id="add-to-bag" />]</div>
-
-                <tr></tr>
-                Added in bag: (<CLayer.ShoppingBagItemsCount></CLayer.ShoppingBagItemsCount>)
+                <div id="addBtn" style={{width: '100px'}}>[<CLayer.AddToBag id="add-to-bag" />]</div>       
               </div>
               <br/>
               <br/>

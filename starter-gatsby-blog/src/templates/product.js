@@ -93,7 +93,7 @@ class ProductTemplate extends React.Component {
 
     return (
       <div style={{ background: '#fff' }}>
-        <Helmet title={`${this.product.name} | ${this.siteTitle}`} />
+        <Helmet title={`${this.product.name} | Products`} />
 
         <div className={styles.flexdiv}>
             <div className={styles.span6}>

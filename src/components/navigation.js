@@ -21,7 +21,7 @@ export default ({category}) => {
             })}
           <li className={styles.navigationItem} style={{fontSize: '15px'}}>
             <img className={styles.checkoutLogo} alt="" src="https://icons-for-free.com/iconfiles/png/512/buy+cart+checkout+ecommerce+retail+shopping+icon-1320086032792426891.png" />
-            <Link to="/checkout">Items in bag: (<CLayer.ShoppingBagItemsCount></CLayer.ShoppingBagItemsCount>)<CLayer.ShoppingBagTotal/></Link>
+            <Link to="/checkout"><CLayer.ShoppingBagTotal/>Basket: (<CLayer.ShoppingBagItemsCount></CLayer.ShoppingBagItemsCount>)</Link>
           </li>
         </ul>
       </nav>

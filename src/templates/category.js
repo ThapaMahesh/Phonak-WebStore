@@ -11,7 +11,7 @@ class CategoryTemplate extends React.Component {
 
     return (
       <div style={{ background: '#fff' }}>
-        <Helmet title={`${post.title} | ${siteTitle}`} />
+        <Helmet title={`${post.title} | Phonak`} />
         <div className={styles.hero}>
           {post.title}
         </div>

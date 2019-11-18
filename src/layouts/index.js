@@ -24,12 +24,12 @@ class Template extends React.Component {
         {children()}
         <CLayer.Config
             baseUrl="https://phonakbutikk.commercelayer.io"
-            clientId="3e8c6076d17fe300633e3eda52bbe7ec0e2895e73ef85483694060f580bec561"
+            clientId="7e8b6f0aff8c4514cc7b293b535920fc884a687a899122844eaf32f4502e9833"
             marketId="1333"
             countryCode="NO"
             languageCode="en"
-            cartUrl="https://example.com/cart"
-            returnUrl="https://example.com/return"
+            cartUrl="http://localhost:8000/checkout"
+            returnUrl="http://localhost:8000"
             privacyUrl="https://example.com/privacy"
             termsUrl="https://example.com/terms" />
       </Container>

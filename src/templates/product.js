@@ -81,9 +81,14 @@ class ProductTemplate extends React.Component {
 
   render() {
 
+    /*if(!window.location.hash){
+      window.location = window.location + '#loaded'
+      window.location.reload()
+    }*/
+
     return (
       <div style={{ background: '#fff' }}>
-        <Helmet title={`${this.product.name} | ${this.siteTitle}`} />
+        <Helmet title={`${this.product.name} | Products`} />
 
         <div className={styles.flexdiv}>
             <div className={styles.span6}>
@@ -92,12 +97,13 @@ class ProductTemplate extends React.Component {
           <div className={styles.span4}>
               <div className={styles.sProdContainer}>
                 <h3>{this.product.name}</h3>
+                <div>Pris: <CLayer.Price skuCode={this.currentVariant.code}/></div>
               </div>
               
               {/*<VariantTypes variant={this.color} title={'Velg Farge:'} type={'color'} onSelectChange={this.onSelectChange}/>
               <VariantTypes variant={this.types} title={'Velg Types: '} type={'type'} onSelectChange={this.onSelectChange}/>
               <VariantTypes variant={this.sizes} title={'Velg størelse: '} type={'size'} onSelectChange={this.onSelectChange}/>*/}
-
+              <br/><br/>
               <CLayer.VariantSelect
                   PriceContainerId="price"
                   AvailabilityMessageContainerId="availability-message"
@@ -106,15 +112,29 @@ class ProductTemplate extends React.Component {
               
             <div className={styles.checkoutDiv}>
               <div style={{position: 'relative'}}>
-                <div>Pris: <CLayer.Price skuCode={this.currentVariant.code}/></div>
-                  <br/>
-                <div id="addBtn" style={{width: '100px'}}>[<CLayer.AddToBag id="add-to-bag" />]</div>       
+                  
+                <div id="addBtn" style={{width: '100px'}}>[<CLayer.AddToBag id="add-to-bag" />]</div>
+
+
+                <CLayer.AvailabilityMessageContainer id="availability-message" />
+
+                <CLayer.AvailabilityMessageAvailableTemplate
+            availableTemplate={
+              <p>Available in <CLayer.AvailabilityMessageMinDays />-<CLayer.AvailabilityMessageMaxDays /> days with <CLayer.AvailabilityMessageShippingMethodName /> (<CLayer.AvailabilityMessageShippingMethodPrice/>)</p>
+            }
+          /> 
+          <CLayer.AvailabilityMessageUnavailableTemplate
+            unavailableTemplate={
+              <p>Not Available</p>
+            }
+          />
+          <hr/>     
               </div>
               <br/>
               <br/>
               <div style={{position: 'relative',float: 'right', width: '100%'}}>
                 <hr/>
-                  <span style={{float: 'right', marginRight: '2vh'}}><Link to="/checkout/">Proceed to checkout</Link></span>
+                  <span style={{float: 'right', marginRight: '2vh'}}><Link to="/checkout/">Proceed to basket</Link></span>
                 <br/>
                 <hr/>
               </div>

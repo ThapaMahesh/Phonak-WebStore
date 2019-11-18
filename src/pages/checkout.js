@@ -2,6 +2,7 @@ import React from 'react'
 import get from 'lodash/get'
 import styles from './checkout.css'
 import * as CLayer from 'commercelayer-react'
+import Helmet from 'react-helmet'
 
 class Checkout extends React.Component{
 
@@ -14,7 +15,7 @@ class Checkout extends React.Component{
        
         return(
             <div className={styles.mainDiv}>
-
+                <Helmet title={`Checkout | Phonak`}/>
                 <CLayer.ShoppingBagItems
                     itemTemplate={
                     <div style={{width: '100vh', height:'auto', display: 'table-cell', background: '#fff', float: 'left', marginBottom: '2vh', border: '1px solid #8FBC8F'}}>
